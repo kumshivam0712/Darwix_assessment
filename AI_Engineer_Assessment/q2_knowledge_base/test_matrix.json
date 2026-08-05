@@ -1,0 +1,42 @@
+[
+  {
+    "query_id": "Q1",
+    "user_question": "What is the waiting period for pre-existing conditions?",
+    "retrieved_record_id": "kb_policy_001",
+    "source_reference": "CareShield_Policy_Manual_v2.pdf",
+    "relevance_explanation": "Directly matches waiting period rules (12 months) for pre-existing illnesses like diabetes.",
+    "verdict": "Correct"
+  },
+  {
+    "query_id": "Q2",
+    "user_question": "How much does the Gold Plan cost per month?",
+    "retrieved_record_id": "kb_pricing_002",
+    "source_reference": "Product_Brochure_2026.pdf",
+    "relevance_explanation": "Accurately retrieves $150/month pricing and $500 deductible terms.",
+    "verdict": "Correct"
+  },
+  {
+    "query_id": "Q3",
+    "user_question": "Does CareShield offer pet dental coverage?",
+    "retrieved_record_id": "kb_scope_003",
+    "source_reference": "Underwriting_Guidelines.pdf",
+    "relevance_explanation": "Retrieves explicit exclusions stating pet insurance is not covered.",
+    "verdict": "Correct"
+  },
+  {
+    "query_id": "Q4",
+    "user_question": "Why should I pick CareShield Gold over basic coverage?",
+    "retrieved_record_id": "kb_pricing_002",
+    "source_reference": "Product_Brochure_2026.pdf",
+    "relevance_explanation": "Highlights 500+ network hospitals in Eastern/Central regions.",
+    "verdict": "Correct"
+  },
+  {
+    "query_id": "Q5",
+    "user_question": "Are emergency health stabilization costs covered early?",
+    "retrieved_record_id": "kb_policy_001",
+    "source_reference": "CareShield_Policy_Manual_v2.pdf",
+    "relevance_explanation": "Matches emergency stabilization clause (30 days threshold).",
+    "verdict": "Correct"
+  }
+]

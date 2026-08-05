@@ -1,0 +1,41 @@
+[
+  {
+    "record_id": "kb_policy_001",
+    "title": "Pre-Existing Conditions Waiting Period",
+    "content": "For standard individual health insurance, pre-existing conditions (e.g., Diabetes, Hypertension) have a 12-month waiting period before full coverage applies. Emergency stabilization is covered after 30 days. For inquiries contact [REDACTED_EMAIL]",
+    "category": "policy_rules",
+    "source": "CareShield_Policy_Manual_v2.pdf",
+    "version": "1.0",
+    "contains_pii": false,
+    "chunk_metadata": {
+      "chunk_index": 1,
+      "total_chunks": 1
+    }
+  },
+  {
+    "record_id": "kb_pricing_002",
+    "title": "Gold Plan Premium & Network",
+    "content": "The Gold Plan starts at $150/month with a $500 annual deductible. Covers over 500 network hospitals in Eastern and Central regions.",
+    "category": "pricing_and_plans",
+    "source": "Product_Brochure_2026.pdf",
+    "version": "1.0",
+    "contains_pii": false,
+    "chunk_metadata": {
+      "chunk_index": 1,
+      "total_chunks": 1
+    }
+  },
+  {
+    "record_id": "kb_scope_003",
+    "title": "Exclusions & Unsupported Policies",
+    "content": "CareShield strictly provides human health insurance policies. Pet insurance, vehicle insurance, and international travel coverage are strictly excluded from all plans.",
+    "category": "exclusions",
+    "source": "Underwriting_Guidelines.pdf",
+    "version": "1.0",
+    "contains_pii": false,
+    "chunk_metadata": {
+      "chunk_index": 1,
+      "total_chunks": 1
+    }
+  }
+]

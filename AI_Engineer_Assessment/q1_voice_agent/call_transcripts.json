@@ -1,0 +1,125 @@
+[
+  {
+    "call_id": "test_call_001",
+    "scenario": "Cooperative Customer - Lead Qualification",
+    "status": "Success",
+    "transcript": [
+      {
+        "speaker": "Assistant",
+        "text": "Hello, this is Sarah from CareShield. I can help check your eligibility for our health insurance plans today. May I know your Age. And if you have any pre-existing health conditions?"
+      },
+      {
+        "speaker": "User",
+        "text": "Hi Sara. My age is 32. I have no pre-existing conditions, and my budget is around $150 per month."
+      },
+      {
+        "speaker": "Assistant",
+        "text": "Thank you for sharing that information. Could you also let me know your preferred network region? This will help me find the best plan options for you."
+      }
+    ],
+    "collected_data": {
+      "age": 32,
+      "pre_existing_conditions": "None",
+      "budget": "$150/month",
+      "preferred_region": "Pending"
+    }
+  },
+  {
+    "call_id": "test_call_002",
+    "scenario": "Customer Objection - Pricing & Value Proposition",
+    "status": "Success",
+    "transcript": [
+      {
+        "speaker": "User",
+        "text": "Your plan. Your plans seem a bit expensive compared to other market options. Why should I choose CareShield?"
+      },
+      {
+        "speaker": "Assistant",
+        "text": "I'm happy to help explain the benefits of choosing CareShield. To provide you with the most accurate information, I'll need to look up specific details about our plans, could you please provide me with your age and any pre-existing conditions you might have? This will help me tailor the information to your needs."
+      }
+    ],
+    "outcome": "Handled grounded behavior by attempting to gather customer parameters before looking up specific plan benefits."
+  },
+  {
+    "call_id": "test_call_003",
+    "scenario": "Out-of-Scope Fallback Test",
+    "status": "Success",
+    "transcript": [
+      {
+        "speaker": "Assistant",
+        "text": "Hello, this is Sarah from CareShield. I can help check your eligibility for our health insurance plans today. May I know your Age. And if you have any pre-existing health conditions?"
+      },
+      {
+        "speaker": "User",
+        "text": "Does CareShield cover pet dental health insurance for my dog?"
+      },
+      {
+        "speaker": "Assistant",
+        "text": "Let me check that for you. I'll search our knowledge base to see if we offer pet dental health insurance. Please hold on for a moment."
+      }
+    ],
+    "outcome": "Bot correctly attempted knowledge retrieval instead of inventing an out-of-scope answer, demonstrating grounded fallback behavior."
+  }
+]
+{
+    "call_id": "Q1_CALL_4",
+    "scenario": "Incomplete / Conflicting Details",
+    "audio_file": "Q1 Audio 4.wav",
+    "transcript": [
+      {
+        "speaker": "Assistant",
+        "text": "Hello, I'm Sarah from CareShield. I'd be happy to help you find the right health insurance plan. May I know your age to get started?"
+      },
+      {
+        "speaker": "User",
+        "text": "I'd rather not say right now."
+      },
+      {
+        "speaker": "Assistant",
+        "text": "No problem at all, I understand. We can proceed with partial information. Do you have any pre-existing health conditions such as diabetes or hypertension?"
+      },
+      {
+        "speaker": "User",
+        "text": "No conditions, I am completely healthy."
+      },
+      {
+        "speaker": "Assistant",
+        "text": "Thank you for confirming that. Next, could you please share your monthly budget range for health insurance and your preferred network hospital region?"
+      },
+      {
+        "speaker": "User",
+        "text": "Well actually, I do have hypertension. And my budget is around $100 per month."
+      },
+      {
+        "speaker": "Assistant",
+        "text": "Thank you for clarifying that. Let me update your record to include hypertension as a pre-existing condition. Your budget is around $100 per month. Could you please let me know your preferred network hospital region or city?"
+      }
+    ]
+  },
+  {
+    "call_id": "Q1_CALL_5",
+    "scenario": "Human-Assistance Request (Escalation)",
+    "audio_file": "Q1 Audio 5.wav",
+    "transcript": [
+      {
+        "speaker": "Assistant",
+        "text": "Hello, I'm Sarah from CareShield. I'd be happy to help you find the right health insurance plan. May I know your age to get started?"
+      },
+      {
+        "speaker": "User",
+        "text": "I am 35 years old."
+      },
+      {
+        "speaker": "Assistant",
+        "text": "Thank you for sharing your age. Do you have any pre-existing health conditions such as diabetes or hypertension?"
+      },
+      {
+        "speaker": "User",
+        "text": "Actually, can I just talk to a real person about this?"
+      },
+      {
+        "speaker": "Assistant",
+        "text": "Certainly, I understand. I will stop the qualification here and arrange for a human specialist to contact you right away."
+      }
+    ]
+  }

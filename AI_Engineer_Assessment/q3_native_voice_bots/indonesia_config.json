@@ -1,0 +1,36 @@
+[
+  {
+    "call_id": "ID_CALL_1",
+    "scenario": "Installment Due Reminder (Bahasa)",
+    "audio_file": "indonesia_test_call.wav.wav",
+    "transcript": [
+      {
+        "speaker": "User",
+        "text": "Halo, ini dari mana ya?"
+      },
+      {
+        "speaker": "Assistant",
+        "text": "Selamat pagi Bapak, menginfokan untuk angsuran motor bulan ini sudah memasuki jatuh tempo ya Pak. Agar terhindar dari denda, pembayaran bisa dilakukan via Indomaret atau M-Banking."
+      }
+    ]
+  },
+  {
+    "call_id": "ID_CALL_2",
+    "scenario": "Tenor Extension Objection",
+    "audio_file": "indonesia_call2_objection.wav",
+    "transcript": [
+      {
+        "speaker": "Assistant",
+        "text": "Selamat pagi, saya Rina dari CareShield Indonesia. Menginfokan mengenai angsuran bulanan Anda yang mendekati jatuh tempo, ada yang bisa saya bantu?"
+      },
+      {
+        "speaker": "User",
+        "text": "This month installment is heavy; can be extend the tenure."
+      },
+      {
+        "speaker": "Assistant",
+        "text": "Tentu, Bapak/Ibu, kami mengerti bahwa terkadang angsuran bisa terasa berat. Kami bisa membantu dengan memperpanjang tenor cicilan hingga 36 bulan agar angsuran bulanan menjadi lebih ringan, apakah Bapak/Ibu tertarik untuk mendiskusikan opsi ini lebih lanjut?"
+      }
+    ]
+  }
+]

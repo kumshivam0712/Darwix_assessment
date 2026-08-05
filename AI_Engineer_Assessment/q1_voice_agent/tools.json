@@ -1,0 +1,38 @@
+[
+  {
+    "name": "query_knowledge_base",
+    "description": "Retrieve grounded answers for pricing, policy, coverage, exclusions, and objection-handling questions. Must be called before answering any factual question about CareShield's plans — never answer from memory.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The caller's question, in natural language, e.g. 'does the gold plan cover pre-existing conditions'"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "create_lead",
+    "description": "Business action: log a qualified lead, a callback request, or an escalation into the mock CRM once qualification data has been collected or the caller asks for a human.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["qualified", "callback_requested", "escalated"]
+        },
+        "age": { "type": "integer" },
+        "pre_existing_conditions": { "type": "string" },
+        "budget": { "type": "string" },
+        "preferred_region": { "type": "string" },
+        "notes": {
+          "type": "string",
+          "description": "Free-text context, e.g. reason for escalation or which field was left pending"
+        }
+      },
+      "required": ["status"]
+    }
+  }
+]

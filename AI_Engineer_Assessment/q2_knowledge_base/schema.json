@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CareShield Knowledge Base Record",
+  "type": "object",
+  "required": [
+    "record_id",
+    "title",
+    "content",
+    "category",
+    "source",
+    "version",
+    "contains_pii",
+    "chunk_metadata"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "pattern": "^kb_[a-z_]+_[0-9]{3}$",
+      "description": "Stable unique ID, format kb_<category>_<3-digit sequence>"
+    },
+    "title": { "type": "string" },
+    "content": {
+      "type": "string",
+      "description": "Cleaned, PII-masked chunk text. Should be self-contained enough to answer a query without surrounding context."
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "policy_rules",
+        "pricing_and_plans",
+        "exclusions",
+        "partnership_benefits",
+        "faq",
+        "objection_handling"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "description": "Originating document/page, e.g. CareShield_Policy_Manual_v2.pdf"
+    },
+    "version": {
+      "type": "string",
+      "description": "Source document version. Bump when the underlying document changes so stale chunks can be identified."
+    },
+    "contains_pii": {
+      "type": "boolean",
+      "description": "True if PII was detected pre-masking. Content itself should always be post-masking regardless of this flag."
+    },
+    "chunk_metadata": {
+      "type": "object",
+      "required": ["chunk_index", "total_chunks"],
+      "properties": {
+        "chunk_index": { "type": "integer", "minimum": 1 },
+        "total_chunks": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareShield AI - Live Call Intelligence & Nudge Engine</title>
+  <!-- Tailwind CSS via CDN for Professional Dark UI -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .nudge-animate { animation: slideIn 0.25s ease-out forwards; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-blue-500 selection:text-white">
+
+  <!-- Top Navigation / Telemetry Bar -->
+  <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+        <div>
+          <h1 class="font-bold text-lg leading-tight tracking-wide">CareShield AI <span class="text-blue-400 font-normal">| Live Nudge Pipeline</span></h1>
+          <p class="text-xs text-slate-400">Q4 Real-Time Acoustic & Transcript Intelligence</p>
+        </div>
+      </div>
+      
+      <!-- Telemetry Stats -->
+      <div class="flex items-center space-x-6 text-xs border border-slate-800 bg-slate-900 px-4 py-2 rounded-lg">
+        <div>
+          <span class="text-slate-400 block">ASR MODEL</span>
+          <span class="font-mono text-emerald-400 font-semibold">Deepgram Nova-2</span>
+        </div>
+        <div class="border-l border-slate-800 pl-4">
+          <span class="text-slate-400 block">SUPPRESSION WINDOW</span>
+          <span class="font-mono text-blue-400 font-semibold">15.0s Cooldown</span>
+        </div>
+        <div class="border-l border-slate-800 pl-4">
+          <span class="text-slate-400 block">P50 LATENCY</span>
+          <span id="avg-latency" class="font-mono text-amber-400 font-semibold">-- ms</span>
+        </div>
+        <div class="border-l border-slate-800 pl-4">
+          <span class="text-slate-400 block">STATUS</span>
+          <span id="connection-status" class="font-semibold text-amber-500">Connecting...</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Grid -->
+  <main class="max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- Left Column: Audio Stream Simulator (5 Cols) -->
+    <div class="lg:col-span-5 space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-400 mb-4 flex items-center justify-between">
+          <span>1. Live Call Stream Simulator</span>
+          <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded">WebSocket Push</span>
+        </h2>
+        <p class="text-xs text-slate-400 mb-6 leading-relaxed">
+          Click below to inject streaming transcript chunks and test acoustic signal detection, latency, and cooldown rules.
+        </p>
+
+        <div class="space-y-3">
+          <!-- Button 1: Compliance -->
+          <button onclick="sendMsg('agent', 'Let me check that policy for you real quick.')" 
+            class="w-full text-left p-3 rounded-lg border border-slate-800 bg-slate-950 hover:border-red-500/50 hover:bg-red-950/10 transition group">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-semibold text-red-400 uppercase tracking-wider">Compliance Gap</span>
+              <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Agent Speech</span>
+            </div>
+            <p class="text-xs text-slate-300 font-mono group-hover:text-white transition">"Let me check that policy..." <span class="text-slate-500">(Skipped recording disclosure)</span></p>
+          </button>
+
+          <!-- Button 2: Cross-sell -->
+          <button onclick="sendMsg('customer', 'I also need to insure my second car next month.')" 
+            class="w-full text-left p-3 rounded-lg border border-slate-800 bg-slate-950 hover:border-blue-500/50 hover:bg-blue-950/10 transition group">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-semibold text-blue-400 uppercase tracking-wider">Missed Opportunity</span>
+              <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Customer Speech</span>
+            </div>
+            <p class="text-xs text-slate-300 font-mono group-hover:text-white transition">"I also need to insure my second car..."</p>
+          </button>
+
+          <!-- Button 3: Frustration -->
+          <button onclick="sendMsg('customer', 'This delay is ridiculous! Get me a manager immediately.')" 
+            class="w-full text-left p-3 rounded-lg border border-slate-800 bg-slate-950 hover:border-amber-500/50 hover:bg-amber-950/10 transition group">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-semibold text-amber-400 uppercase tracking-wider">Rising Frustration</span>
+              <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">Customer Speech</span>
+            </div>
+            <p class="text-xs text-slate-300 font-mono group-hover:text-white transition">"This delay is ridiculous! Get me a manager..."</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Architecture Info Box -->
+      <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-4 text-xs text-slate-400 space-y-2">
+        <div class="font-semibold text-slate-300">Production Feature Controls:</div>
+        <ul class="list-disc list-inside space-y-1 pl-2 text-slate-400">
+          <li><strong class="text-slate-300">De-duplication:</strong> Prevents repetitive alerts within 15s.</li>
+          <li><strong class="text-slate-300">Noise Suppression:</strong> Ignores low-confidence conversational fillers.</li>
+          <li><strong class="text-slate-300">Sub-second Latency:</strong> Immediate UI delivery via async WebSockets.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right Column: Live Nudges Feed (7 Cols) -->
+    <div class="lg:col-span-7 flex flex-col h-full">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg flex-1">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+          <div class="flex items-center space-x-2">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-200">2. Live Agent Recommendations</h2>
+            <span id="nudge-count" class="text-xs font-mono bg-slate-800 px-2 py-0.5 rounded-full text-slate-300">0 generated</span>
+          </div>
+          <button onclick="clearNudges()" class="text-xs text-slate-400 hover:text-white transition">Clear Feed</button>
+        </div>
+
+        <!-- Nudges Feed Box -->
+        <div id="nudge-box" class="space-y-3 min-h-[350px] max-h-[480px] overflow-y-auto pr-1">
+          <div id="empty-state" class="h-64 flex flex-col items-center justify-center text-slate-500 border border-dashed border-slate-800 rounded-lg">
+            <p class="text-sm font-medium">Listening for call events...</p>
+            <p class="text-xs text-slate-600 mt-1">Simulate customer or agent speech from the left panel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const ws = new WebSocket("ws://127.0.0.1:8000/ws/stream");
+    const nudgeBox = document.getElementById("nudge-box");
+    const emptyState = document.getElementById("empty-state");
+    const statusEl = document.getElementById("connection-status");
+    const latencyEl = document.getElementById("avg-latency");
+    const countEl = document.getElementById("nudge-count");
+
+    let count = 0;
+    let totalLatency = 0;
+
+    ws.onopen = function() {
+      statusEl.textContent = "● Live Online";
+      statusEl.className = "font-semibold text-emerald-400";
+    };
+
+    ws.onerror = function() {
+      statusEl.textContent = "● Disconnected";
+      statusEl.className = "font-semibold text-red-500";
+      alert("Python server connected nahi hai! Terminal me 'python q4_realtime_nudges/app.py' chalao.");
+    };
+
+    ws.onmessage = function(event) {
+      const data = JSON.parse(event.data);
+      if (emptyState) emptyState.remove();
+
+      count++;
+      totalLatency += (data.latency_ms || 110);
+      countEl.textContent = `${count} generated`;
+      latencyEl.textContent = `${Math.round(totalLatency / count)} ms`;
+
+      // Assign badge color based on priority
+      const badgeColor = data.priority === "HIGH" 
+        ? "bg-red-500/10 text-red-400 border-red-500/30" 
+        : "bg-blue-500/10 text-blue-400 border-blue-500/30";
+
+      const borderColor = data.priority === "HIGH" ? "border-l-red-500" : "border-l-blue-500";
+
+      const card = document.createElement("div");
+      card.className = `nudge-animate bg-slate-950 border border-slate-800 border-l-4 ${borderColor} p-4 rounded-lg shadow-sm`;
+      
+      const timeStr = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+      card.innerHTML = `
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-semibold px-2 py-0.5 rounded border ${badgeColor}">
+              ${data.signal}
+            </span>
+            <span class="text-[11px] text-slate-400 font-mono">PRIORITY: ${data.priority}</span>
+          </div>
+          <div class="flex items-center space-x-3 text-[11px] font-mono text-slate-400">
+            <span>⚡ ${data.latency_ms}ms</span>
+            <span>${timeStr}</span>
+          </div>
+        </div>
+        <p class="text-sm font-medium text-slate-200 leading-snug">${data.nudge}</p>
+      `;
+
+      nudgeBox.prepend(card);
+    };
+
+    function sendMsg(speaker, text) {
+      if (ws.readyState !== WebSocket.OPEN) {
+        alert("Pehle Python server run karo: python q4_realtime_nudges/app.py");
+        return;
+      }
+      ws.send(JSON.stringify({ speaker: speaker, transcript: text }));
+    }
+
+    function clearNudges() {
+      nudgeBox.innerHTML = `
+        <div id="empty-state" class="h-64 flex flex-col items-center justify-center text-slate-500 border border-dashed border-slate-800 rounded-lg">
+          <p class="text-sm font-medium">Listening for call events...</p>
+          <p class="text-xs text-slate-600 mt-1">Simulate customer or agent speech from the left panel.</p>
+        </div>
+      `;
+      count = 0;
+      totalLatency = 0;
+      countEl.textContent = "0 generated";
+      latencyEl.textContent = "-- ms";
+    }
+  </script>
+</body>
+</html>

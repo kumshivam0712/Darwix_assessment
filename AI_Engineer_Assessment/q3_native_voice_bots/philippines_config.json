@@ -1,0 +1,36 @@
+[
+  {
+    "call_id": "PH_CALL_1",
+    "scenario": "Premium Renewal Reminder (Taglish)",
+    "audio_file": "philippines_test_call.wav.wav",
+    "transcript": [
+      {
+        "speaker": "User",
+        "text": "Hi, I saw a reminder about my insurance policy."
+      },
+      {
+        "speaker": "Assistant",
+        "text": "Hi po! Salamat po for reaching out. Yes po, I'm here to remind you about your policy premium na due today. This is to ensure na tuloy-tuloy ang active coverage ninyo for your protection at ng inyong mga beneficiary."
+      }
+    ]
+  },
+  {
+    "call_id": "PH_CALL_2",
+    "scenario": "Price Objection Handling",
+    "audio_file": "philippines_call2_objection.wav",
+    "transcript": [
+      {
+        "speaker": "Assistant",
+        "text": "Hi PO, ako po si Maria, from CareShield Philippines. Tumawag. Po ako regarding your insurance policy premium reminder."
+      },
+      {
+        "speaker": "User",
+        "text": "Your premium is expensive. Is there a discount?"
+      },
+      {
+        "speaker": "Assistant",
+        "text": "Hello po, ma'am. Naiintindihan ko po na mukhang mahal ang premium natin, pero napaka-sulit po talaga ng policy natin. na malaking tulong sa oras ng pangangailangan. Meron din po tayong bank referral discount na makakatulong sa inyo. Kung may iba pa po kayong tanong or concerns, nandito lang po ako para tulungan kayo."
+      }
+    ]
+  }
+]
