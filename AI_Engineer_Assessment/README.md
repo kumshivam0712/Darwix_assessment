@@ -275,31 +275,33 @@ The repository has been validated for:
 * JSON Schema
 
 ---
+## Architecture
 
-# Architecture
+```mermaid
+flowchart LR
+    subgraph Q2["Q2 — Knowledge Base"]
+        Raw[Raw docs: web, PDF, forms] --> Clean[ingest_and_clean.py<br/>dedupe, PII mask, standardize]
+        Clean --> KB[(knowledge_base_records.json)]
+        KB --> Retrieval[hybrid_retrieval.py<br/>BM25 + TF-IDF fusion<br/>+ confidence gate]
+    end
 
+    subgraph Q1["Q1 — Voice Agent"]
+        Caller((Caller)) <--> Platform[Voice platform<br/>ASR + TTS + call flow]
+        Platform --> Prompt[system_prompt.txt<br/>qualification + escalation logic]
+        Platform -->|query_knowledge_base tool| Retrieval
+        Platform -->|create_lead tool| CRM[(Mock CRM / webhook)]
+    end
+
+    subgraph Q3["Q3 — PH / ID Bots"]
+        Platform -.->|localized configs| PHID[philippines_config.json<br/>indonesia_config.json]
+    end
+
+    subgraph Q4["Q4 — Live Nudges"]
+        Platform -->|live transcript stream| Nudge[nudge_engine.py<br/>signal detection]
+        Nudge --> Dashboard[dashboard.html<br/>via WebSocket]
+    end
 ```
-Voice Call
-      │
-      ▼
-Speech Recognition
-      │
-      ▼
-Knowledge Retrieval
-(BM25 + TF-IDF)
-      │
-      ▼
-Voice Agent
-      │
-      ├─────────────► Lead Creation
-      │
-      └─────────────► Real-Time Signal Detection
-                            │
-                            ▼
-                     Live Agent Nudges
-```
 
----
 
 # Notes
 
